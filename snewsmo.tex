@@ -21,14 +21,26 @@ It is the conviction of the participants that SNEWS should operate under conditi
 \end{itemize}
 \end{itemize}
 
-One caveat is that details that would assist individuals in locating and gaining access to the SNEWS servers, and information that could be used to simulate SNEWS alerts, will be confined to an Appendix which will not be widely distributed but is nonetheless available to certain members of the participating experiments.
+One caveat is that details that would assist individuals in locating
+and gaining access to the SNEWS servers, and information that could be
+used to simulate SNEWS alerts, will be confined to an Appendix which
+will not be widely distributed but is nonetheless available to certain
+members of the participating experiments.
 
-It is also implicit that SNEWS will develop in a series of managed transitions between operational modes. Each operational mode will be identified by a number and the date when it came into effect.   More….
+It is also implicit that SNEWS will develop in a series of managed
+transitions between operational modes. Each operational mode will be
+identified by a number and the date when it came into effect.
+More….
 
 \section{Operational Mode \#1 effective 1/11/2003}
 
 \subsection{The participants}
-	(Here are listed all experiments that may presently send alerts to the coincidence server(s).  It is understood that a temporary lack of participation of one or more or these listed experiments for hours, days, or weeks does not constitute a change of operational mode.  Any other change in this list does constitute a change of Operational Mode.)
+	(Here are listed all experiments that may presently send
+alerts to the coincidence server(s).  It is understood that a
+temporary lack of participation of one or more or these listed
+experiments for hours, days, or weeks does not constitute a
+change of operational mode.  Any other change in this list
+does constitute a change of Operational Mode.)
 \begin{itemize}
 \item S-K
 \item LVD
@@ -55,12 +67,51 @@ It is also implicit that SNEWS will develop in a series of managed transitions b
 \end{itemize}
 
 \subsection{Coincidence Definition}
-\begin{itemize}
-\item ie. Time window
-\item rate suppression algorithm
-\item definition of silver (SNEWS) alert
-\item definition of gold (SNEWS) alert
-\end{itemize}
+
+A ``gold'' alert is generated if \textit{all} of
+following conditions are met:
+
+\begin{enumerate}
+
+\item There is a 2 or more -fold coincidence within 10 seconds,
+involving at least
+two different experiments.  (The time window refers to the maximum
+separation of any of the alarms in the coincidence.)
+
+\item At least two of the experiments involved
+are at different laboratories.
+
+\item Two or more of the alarms in the coincidence
+are flagged as ``good''.  (Individual experiments flag
+as ``good'' if running conditions are normal, e.g. no
+calibrations, etc.  The specific criteria for a good alarm are defined
+by each experimental collaboration).
+
+\item For all of the experiments involved in the coincidence,
+the rate of good alarms for several past time intervals $\{T_i\}=\{$10 minutes, 1
+hour, 10 hours, 1 day, 3 days, 1 week, 1 month$\}$, must be consistent with
+the $\lambda_{\rm{max}}=$1/week requirement.\footnote{These intervals
+represent real time, not live time, since full live time information
+will not be available to the coincidence server.}
+We define the precise condition 
+as follows:  
+if an experiment sent $\{n_i\}$ alarms in 
+each of the last intervals $\{T_i\}$,
+then the Poisson probabilities $\mathcal{P}_i$ for $n_i$ or more
+alarms in $T_i$,
+
+$\mathcal{P}_i=\sum_{n=n_i}^{\infty}(\lambda_{\rm{max}} T_i)^{n}e^{-\lambda_{\rm{max}} T_i}/n!$,
+
+for each interval $T_i$, must each be greater than $\mathcal{P}_{thr}=0.5$\%.
+This corresponds to the condition that each $\{n_i\}$ must be be less
+than $\{1,2,2,3,4,5,11\}$ for the preceding intervals $\{T_i\}$ for an
+alarm to be ``gold''.
+
+\end{enumerate}
+
+A ``silver'' alert, to be checked by the experimenters,
+satisfies the first criterion but not all of the others.
+
 
 \subsection{Annunciation}
 \subsubsection{Silver Procedure (including elevation to Gold)}
