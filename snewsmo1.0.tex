@@ -228,7 +228,31 @@ alarms.
 
 \subsection{Alert List Management}
 
-For Alec: PGP signing, key info and tests
+To allow the confirmation of a SNEWS alert as really coming from SNEWS,
+any alerts will be public key signed using the SNEWS key.  This key has
+the ID\# 68DF93F7, and is available on the network of public PGP
+keyservers such as \texttt{http://pgp.mit.edu/}
+
+People receiving any alert should verify that this signature was used to
+sign the alert message, to satisfy themselves that the alert is really
+coming from the SNEWS collaboration and is not being maliciously or
+accidentally spoofed.  Exactly how to do this is a function of the
+individual user's email client.  Since many people do not use such
+features on a day to day basis, anyone wishing to be able to verify
+SNEWS alerts should set up their client in advance.  Instructions for
+doing so can be found on the SNEWS web site for many popular email
+clients.  \marginpar{\it This documentation currently under construction}
+
+Email to the list of alert subscribers will be limited to real alerts
+and quarterly test messages.  These test messages will be clearly
+labeled as a mailing list test, to remind the subscribers that they are
+subscribed and to ensure mailing list functionality.
+
+People wishing to subscribe or unsubscribe from the alert mailing list
+can do so automatically using the GNU mailman software linked to from
+the SNEWS website.  The subscriber list is held in complete
+confidentiality, only available to the SNEWS core group and not used for
+any purpose other than alerts and periodic tests.
 
 \subsection{GOLD Procedure}\label{GOLD}
 
