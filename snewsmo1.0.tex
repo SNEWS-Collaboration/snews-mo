@@ -58,7 +58,7 @@ The alarm datagrams include a packet type, and a level flag.
 The packet type can be PING, ALARM, or RETRACTION.
 The level flag can be TEST, GOOD, DUBIOUS, RETRACTED or OVERRIDE.  
 Datagrams having packet field values which do not 
-belond to any of these categories are discarded by the server.
+belong to any of these categories are discarded by the server.
 
 \noindent \underline{Packet Types}
 
@@ -382,13 +382,14 @@ For the SILVER case, the message goes out only to the SILVER list.
 
 \subsection{Individual Experiment Alerts}
 
-There is no restriction on individual experiments making any announcement
-based on individual observation in the case on absence of a SNEWS
-alert, SILVER or GOLD, or preceding a SNEWS alert message.  
-Any individual experiment may
-publicly announce a supposed supernova signal following a dispatched 
-SILVER alert which has not yet been upgraded to GOLD.  In this case 
-the information that a previous SILVER alert from the
-SNEWS server(s) has been received should be cited.
+There is no restriction on individual experiments making any
+announcement based on individual observation in the case of absence of
+a SNEWS alert, SILVER or GOLD, or preceding or following any SNEWS
+alert message.  Any individual experiment may publicly announce a
+supposed supernova signal following a dispatched SILVER alert which
+has not yet been upgraded to GOLD, or a GOLD alert.  In these cases
+the information that a previous alert from the SNEWS server(s) has
+been received should be cited.
+
                                          
 \end{document}
