@@ -29,7 +29,7 @@ The SNEWS inter-experiment privacy agreement can be found at \\
 
 Criteria of the privacy agreement (section~\ref{privacy}) regarding
 access to SNEWS-related accounts on the client computer should be
-strictly observed In addition, the following are recommended:
+strictly observed. In addition, the following are recommended:
 
 \begin{itemize}
 \item Outside the main domain of the 
@@ -53,8 +53,30 @@ in the Memorandum of Understanding at\\
 \begin{itemize}
 
 \item Each participating experiment may generate and send to the server
-for different types of alarm datagrams: TEST, GOOD, DUBIOUS and RETRACTED.
-{\it These designations may change}
+for different types of alarm datagrams.
+The alarm datagrams include a packet type, and a level flag.
+The packet type can be PING, ALARM, or RETRACTION.
+The level flag can be TEST, GOOD, DUBIOUS, RETRACTED or OVERRIDE.  
+Datagrams having packet field values which do not 
+correspond to these categories are discarded by the server.
+
+\noindent \underline{Packet Types}
+
+\begin{itemize}
+\item PING: Ping packets are used for test purposes only
+and cause nothing more than a message printed to the coincidence
+server log.
+
+\item ALARM: Alarm packets contain information about individual
+experiment alarms; what the server does with them depends on the
+level flag.
+
+\item RETRACTION:  Retraction packets contain information about
+previous alarms to be retracted from the server's alarm queues.
+
+\end{itemize}
+
+\noindent \underline{Level Flags}
 
 \begin{itemize}
 
@@ -71,8 +93,10 @@ alarm level is set to {\it 1}.
 \item GOOD: This flag indicates an alarm generated during
 normal detection conditions.  The alarm level is set to {\it 2}.
 
-\item RETRACTED: This flag indicates an alarm 
-that has been retracted.  The alarm level is set to {\it -1}.
+\item RETRACTED: This flag is set for retraction 
+packets (note that this informtion is redundant -- all packets of
+RETRACTION type will be retracted regardless of level flag).  The
+alarm level is set to {\it -1}.
 
 \item OVERRIDE: This flag indicates an alarm 
 that has been confirmed as good.  The alarm level is set to {\it 3}.
@@ -80,8 +104,7 @@ that has been confirmed as good.  The alarm level is set to {\it 3}.
 \end{itemize}
  
 \item The details of the SNEWS datagram structure should
-be known only to SNEWS subgroup members {\it but note some
-working group members have worked with the code already} 
+not be propagated beyond the SNEWS subgroup.
 
 \item The client datagrams employ TCP protocol and 
 are encrypted using OpenSSL.  
@@ -92,7 +115,7 @@ of checks to validate the origin of the datagram:
 \item The server process employs a {\tt tcp\_wrappers hosts\_access}
 call to check the IP of the client machine against the lists in
 {\tt hosts.allow/deny}.  These lists allow only the IP addresses
-of the client machines of the involved experiments.
+of the client machines of the involved experiments to submit packets.
 \item
 The client and server exchange certificates which have been
 verified by the SNEWS Certificate Authority, and reject
@@ -117,9 +140,9 @@ Upon receipt of any coincidence message, either SILVER or GOLD, the
 shifter must immediately log on to the server computer to check that
 SNEWS code is running correctly, according to logs.  If everything
 is in order, he or she must follow
-the alert procedures outlined in sections \ref{SILVER}-\ref{GOLD}.  ({\it If
-something seems to be wrong, whatever the alert is, the consequent
-actions for the shifter must be here defined.})
+the alert procedures outlined in sections \ref{SILVER}-\ref{GOLD}.  If
+something seems to be wrong, the shiftworker must contact the
+relevant people.
 
 \subsection{Shift Maintenance and Monitoring Responsibilities}
 
@@ -133,7 +156,7 @@ At daily intervals, the shifter must check the following:
 \end{itemize}
 
 The shifter must make an entry in the online logbook and record any
-anomalous conditions, and, as appropriate notify the rest of the subgroup
+anomalous conditions, and, as appropriate, notify the rest of the subgroup
 of any problems.
 
 % Backup shifter?
@@ -191,12 +214,12 @@ experiment collaborations before any public announcement. No alert
 will be sent to the community by SNEWS until (and if) there is an
 upgrade to GOLD.
 
+A GOLD alert may also be generated if condition 1 is satisfied and
+at least one alarm in the coincidence is OVERRIDE and at least one
+is GOOD (this case allows an override of past high rate history
+demotion, or other dubious conditions,  for a human-checked alert).
+
 \section{Alert Procedure}
-({\it This is a very important section. We are fixing the way to proceed
-in the case of a coincidence. Please read carefully and add any 
-comments/modifications/suggestions you think are useful. These are 
-just the first ideas on. In some case  only the philosophy on what we need 
-to do is specified with no technical solutions yet.}\\
 
 \subsection{General Considerations and Procedures}
 
@@ -206,27 +229,91 @@ information:
 \begin{itemize}
 \item UTC time of the coincidence,
 \item all detectors involved in the coincidence, and
-\item the types of alarms (GOOD, DUBIOUS) for each one involved
+\item the types of alarms (GOOD, DUBIOUS) for each experiment involved
 in the coincidence
 \end{itemize}
 
 will be automatically sent by the server to the SNEWS subgroup
-members. 
+members.   Information may also be posted on a restricted SNEWS
+subgroup page.
 
-({\it Should we post on-line the information in to a 
-restricted WEB page on the server? May be useful in the case e-mail is not available. 
-However the snnet web page should report the cronology of what has been going on.})
+%({\it Should we post on-line the information in to a 
+%restricted WEB page on the server? May be useful in the case e-mail is not available. 
+%However the snnet web page should report the cronology of what has been going on.})
 
-%It is up to each experiment to check
-%its own data quality and forward to the SNEWS subgroup any information
-%which may affect the alert type in upgrading or demoting it as well to
-%resend the datagram to the server(s).  To avoid misunderstanding, the
-%UTC time of a re-forwarded alarm must be preserved.
  
 Note that the server process holds in memory one day's worth of
 alarms.  
 
-\subsection{Alert List Management}
+
+\subsection{GOLD Procedure}\label{GOLD}
+
+For a GOLD alert, the alert message is sent directly to the 
+{\tt snews-alert} mailing list, which includes addresses of all
+who have signed up to received it. This includes astronomers,
+and the Sky \& Telescope AstroAlert list. 
+
+\subsubsection{Individual Experiment Gold Procedures}
+
+\begin{itemize}
+
+\item SNO: see Appendix for contact list
+\item Super-K: see Appendix for contact list
+\item LVD: see Appendix for contact list
+
+\end{itemize}
+
+
+\noindent {\bf Demoting from GOLD:}\\ Although we hope
+to avoid ever being in the situation where retraction of a GOLD alert
+is necessary, any experiment may reflag from GOOD to RETRACTED its
+own alarm after data checking.  The server will then automatically
+reevaluate and reissue the alert based on alarms in its one-day
+memory: the result may be still GOLD, demotion to SILVER, or no alert
+at all.  For the latter case, a RETRACTED alert will be issued to the
+same mailing list as for GOLD.
+
+\subsection{SILVER Procedure}\label{SILVER}
+For a SILVER alert, no automated alert message to the community
+is generated by the coincidence server. 
+The procedure indicated by each experiment should be followed by
+the SNEWS shiftworker.\\
+
+\subsubsection{Individual Experiment Silver Procedures}
+
+\begin{itemize}
+
+\item SNO: see Appendix for contact list
+\item Super-K: see Appendix for contact list
+\item LVD: see Appendix for contact list
+
+\end{itemize}
+
+
+\noindent \textbf{Upgrading from SILVER to GOLD}\\
+A SILVER alert may be upgraded to GOLD if the requirements are
+confirmed in a second step. Any individual experiment is expected to
+resend its alarm datagram if the flag can be changed from DUBIOUS to
+GOOD. All subgroup members must be informed at the same time by
+e-mail. If the GOLD conditions are consequently fulfilled after the
+new alarm dispatch, the GOLD procedure will automatically operate.
+Note that the server process holds in memory one day's worth of
+alarms.
+
+\subsection{SNEWS Data Exchange}
+
+All server-client information
+exchanged during a supposed SN alert will be saved
+in the server log file. This information is available to subgroup
+members at any time, and later to the experiment collaborations
+by agreement of the SNEWS Advisory Board.
+
+% info on web page for upgrade
+
+
+\section{Communication to the Scientific Community}
+
+\subsection{Alert Mailing List Management}
 
 To allow the confirmation of a SNEWS alert as really coming from SNEWS,
 any alerts will be public key signed using the SNEWS key.  This key has
@@ -254,70 +341,33 @@ the SNEWS website.  The subscriber list is held in complete
 confidentiality, only available to the SNEWS core group and not used for
 any purpose other than alerts and periodic tests.
 
-\subsection{GOLD Procedure}\label{GOLD}
+\subsection{Alert Email Message}
 
-For a GOLD alert, the alert message is sent directly to the 
-{\tt snews-alert} mailing list, which includes addresses of all
-who have signed up to received it. This includes astronomers,
-and the Sky \& Telescope astro-alert list. 
+A message resembling the following will be sent to all
+subscribers:
+\begin{verbatim}
+------------------------------
+*** SENDING ALERT ***
+Coincidence rating: GOLD
+Alarms in the coincidence:
 
-\subsubsection{Individual Experiment Gold Procedures}
+Experiment: Super-K
+Level: GOOD
+Time: January 3, 2005 10:01:03 
 
-\begin{itemize}
+Experiment: LVD
+Level: GOOD
+Time: January 3, 2005 10:01:04
 
-\item SNO
-\item Super-K
-\item LVD
+For information, see web page http://cyclo.mit.edu/snnet/
+\end{verbatim}
 
-\end{itemize}
+For the gold case, the same information and updates will go
+to the public SNEWS URL.
+For the SILVER case, the message goes out only the the SILVER list.
 
+\subsection{Individual Experiment Alerts}
 
-\noindent {\bf Demoting from GOLD:}\\ Although we hope
-to avoid ever being in the situation where retraction of a GOLD alert
-is necessary, any experiment may reflag from GOOD to RETRACTED its
-own alarm after data checking.  The server will then automatically
-reevaluate and reissue the alert based on alarms in its one-day
-memory: the result may be still GOLD, demotion to SILVER, or no alert
-at all.  For the latter case, a RETRACTED alert will be issued to the
-same mailing list as for SILVER.
-
-\subsection{SILVER Procedure}\label{SILVER}
-For a SILVER alert, no automated alert message
-is generated by the coincidence server. 
-The procedure indicated by each experiment should be followed by
-the SNEWS shiftworker.\\
-
-\subsubsection{Individual Experiment Silver Procedures}
-
-\begin{itemize}
-
-\item SNO
-\item Super-K
-\item LVD
-
-\end{itemize}
-
-
-\noindent \textbf{Upgrading from SILVER to GOLD}\\
-A SILVER alert may be upgraded to GOLD if the requirements are
-confirmed in a second step. Any individual experiment is expected to
-resend its alarm datagram if the flag can be changed from DUBIOUS to
-GOOD. All subgroup members must be informed at the same time by
-e-mail. If the GOLD conditions are consequently fulfilled after the
-new alarm dispatch, the GOLD procedure will automatically operate.
-
-\subsection{SNEWS Data Exchange}
-
-All server-client information
-exchanged during a supposed SN alert will be saved
-in the server log file. This information is available to subgroup
-members at any time, and later to the experiment collaborations
-by agreement of the SNEWS Advisory Board.
-
-% info on web page for upgrade
-
-
-\section{Communication to the Scientific Community}
 There is no restriction on individual experiments making any announcement
 based on individual observation in the case on absence of a SNEWS
 alert, SILVER or GOLD, or preceding a SNEWS alert message.  
