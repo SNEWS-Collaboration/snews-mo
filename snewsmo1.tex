@@ -40,12 +40,12 @@ security and maintenance issues, can be found at
 in the Memorandum of Understanding at
 {\tt http://cyclo.mit.edu/snnet/bnl\_mou}.
 
-\section{Client-Server Communications}
+\section{Client-Server Communications}\label{alarm}
 \begin{itemize}
 \item Each participating experiment may generate and send to the server
-3 different types of alarm defined as TEST BAD GOOD and 
+3 different types of alarm defined as TEST or BAD or GOOD and 
 properly flagged in the datagram.({\it The type name may be conveniently 
-changed as well as the flag number inside the coincidence code.})
+changed as well as the flag number for the coincidence code.})
 \begin{itemize}
 \item TEST: This code has to be used only to check the client-server
 connection. The datagram structure is fixed: all parameters in the
@@ -53,7 +53,7 @@ datagram, different from flag and
 experiment code, must be set to {\it 0}. Alarm flag is set to {\it 0}. 
 
 \item BAD : This code flags alarms generated when scheduled operations
-(i.e. maintenance, calibration, test, etc.) on the detector are going on. It's
+(i.e. maintenance, calibration, tests, etc.) on the detector are going on. It's
 up to each experiment to set this flag inside the packet when it's supposed
 necessary. 
 All parameters in the datagram should be properly filled according
@@ -91,7 +91,7 @@ IP addresses before data is exchanged.
 SNEWS shifts will be coordinated by xxx, and will be run on
 a week by week basis.  During each shift week, the shifter will
 be equipped with a cell phone and laptop with cellular
-capabibility. A short and simple to use manual on the shifter 
+capabibility. A short and simple to use manual on shifter's 
 responsibilities will be provided. Daily duties, alert procedures and
 actions, e-mail and phone numbers of all subgroup members, SNEWS
 coordinator, server manager should be included.
@@ -102,8 +102,8 @@ coordinator, server manager should be included.
 Upon receipt of coincidence, either SILVER or GOLD, the shifter
 must immediately log on to check that SNEWS code is running
 correctly, according to logs.  If everything seems OK, for 
-the case of a SILVER/GOLD  alert, he or she must follow the procedure
-outlined in section \ref{silver}/\ref{gold}.
+the case of a SILVER-GOLD  alert, he or she must follow the procedure
+outlined in sections \ref{SILVER}-\ref{GOLD}.
 ({\it If something seems to be wrong, whatever the alert is, the consequent  
 actions for the shifter must be here defined.})
 
@@ -113,14 +113,14 @@ At daily intervals, the shifter must check the following:
 
 \begin{itemize}
 \item The gcserver process is running normally.
-\item That there is network connectivity to all clients ($ may
-require communication $)
+\item That there is network connectivity to all clients. ({\it may
+require communication })
 \item ping plots... other checks...
 
 \end{itemize}
 
 The shifter must confirm in the online logbook, record any
-anomalous conditions, and notify the rest of the subgroup.
+anomalous conditions, and, if there, notify the rest of the subgroup.
 
 % Backup shifter?
 
@@ -128,8 +128,8 @@ anomalous conditions, and notify the rest of the subgroup.
 \section{Coincidence Definition}
 
 The general coincidence definition implemented in the coincidence code
-may generate two types of alert:``gold'' and ``silver''.\\
-A ``gold'' alert is generated if {\it all} of
+may generate two types of alert:GOLD and SILVER.\\
+A GOLD alert is generated if {\it all} of
 following conditions (1 through 4) are met:
 
 \begin{enumerate}
@@ -143,17 +143,15 @@ separation of any of the alarms in the coincidence.)
 are at different laboratories.
 
 \item Two or more of the alarms in the coincidence
-are flagged as ``good''.  The SNEWS collaboration states
+are flagged as GOOD.  The SNEWS collaboration states
 that flagging the alarms as GOOD or BAD (eventually TEST) should be effective 
-for all detectors when in the operational  mode. 
-Generally a ``good'' flag means a normal running condition, excluding 
-calibrations, tests, and all purposes maintenance.  
-The specific criteria for a GOOD/BAD/TEST alarm are locally defined by
-each experiment. 
+for all detectors when in the operational  mode.  
 It's up to each participant to flag properly the alarm sent to the SNEWS 
-server(s).  
- 
-\item For at least two of the experiments involved in the coincidence,
+server(s). 
+The specific criteria for a GOOD/BAD/TEST alarm are locally defined by
+each experiment according to the general rule defined in section \ref{alarm}. 
+  
+ \item For at least two of the experiments involved in the coincidence,
 the rate of good alarms for several past time intervals $\{T_i\}=\{$10 minutes, 1
 hour, 10 hours, 1 day, 3 days, 1 week, 1 month$\}$, must be consistent with
 the $\lambda_{\rm{max}}=$1/week requirement.\footnote{These intervals
@@ -171,14 +169,14 @@ $\mathcal{P}_i=\sum_{n=n_i}^{\infty}(\lambda_{\rm{max}} T_i)^{n}e^{-\lambda_{\rm
 for each interval $T_i$, must each be greater than $\mathcal{P}_{thr}=0.5$\%.
 This corresponds to the condition that each $\{n_i\}$ must be be less
 than $\{1,2,2,3,4,5,11\}$ for the preceding intervals $\{T_i\}$ for an
-alarm to be ``gold''.
+alarm to be GOLD.
 
 \end{enumerate}
 
 When at least the first criterion is satisfied the generated alert is
-flagged as ``silver''. In this case the consistency and the reliability 
+flagged as SILVER. In this case the consistency and the reliability 
 of the alert has to be checked by the experimenters inside the collaboration before any public announcement. No alert will be sent by SNEWS until (and if)
-there is an upgrade to gold.
+there is an upgrade to GOLD.
 
 \section{Alert Procedure}
 ({\it This is a very important section. We are fixing the way to procede
@@ -199,7 +197,7 @@ will be according to the general policies defined here.\\
 All relevant parameters {\it -UTC
 time of the coincidence, involved detectors, type of alarms-} will be
 automatically forwarded by the server(s) to the SNEWS subgroup members
-at the time of the dispatched alert, either silver or gold.
+at the time of the dispatched alert, either SILVER or GOLD.
 After receipt of this information, if under any condition,
 the coincidence and the number of detectors which generate 
 it is used either for any scientific purpose or for any alert
@@ -233,7 +231,7 @@ time. If another server will be on-line we have to fix some priority between
 them, ore we can have a double notification.
 })
 
-\subsection{Gold Procedure}\label{gold}
+\subsection{GOLD Procedure}\label{GOLD}
 
 In the case of a GOLD alert all SNEWS subgroup members must be informed
 on-line at the time of the automated alert is sent to the astronomical
@@ -256,9 +254,9 @@ on this point? -> this time limit will already be enforced as
 the software is currently set up-- alerts are kept only for a day
 and then thrown away})
 
-\subsection{Silver Procedure}\label{silver}
+\subsection{SILVER Procedure}\label{SILVER}
 No automated alert is generated by the coincidence server(s). 
-The SNEWS subgroup members are immediately notified 
+The SNEWS subgroup members are immediately notified by the shifter 
 with all informations needed for the prompt check of the data in order to 
 confirm or reject it definitely.
 The procedure indicated by each experiment should be followed.\\
@@ -287,10 +285,10 @@ inside the SNEWS collaboration 24 (?) hours after the event.
 \section{Communication to the Scientific Community}
 There is no restriction on invidual experiments announcing something
 based on individual observation in the case on absence of a SNEWS
-alert, silver or gold, or preceding it.  Any individual experiment may
-publicly announce supposed supernova signal following a dispatched
-silver alert which has not yet been upgraded to gold.  In this case
-the SNEWS the information that a previous ``silver'' alert from the
+alert, SILVER or GOLD, or preceding it.  Any individual experiment may
+publicly announce supposed supernova signal following a dispatched 
+SILVER alert which has not yet been upgraded to GOLD.  In this case 
+the information that a previous SILVER alert from the
 SNEWS server(s) has been received should be cited.
                                          
 \subsection{Privacy Agreement}
