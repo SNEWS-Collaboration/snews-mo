@@ -2,68 +2,41 @@
 
 \begin{document}
 
-\title{need a good title}         
+\title{SNEWS Operational Mode \#1 effective 1/11/2003}         
 \author{SNEWS Collaboration}
 \date{\today}
 \maketitle
 
-\section{SNEWS Operational Mode \#1 effective 1/11/2003}
-
-\subsection{The participants}
-Here are listed all experiments that may presently send
-alerts to the coincidence server(s).  It is understood that a
-temporary lack of participation of one or more or these listed
-experiments for hours, days, or weeks does not constitute a
-change of operational mode.  
-However it is assumed that long lasting downtime periods ($\delta t>$1 day),
-previuosly scheduled for maintenance, calibration or other items, 
-must be officially notified to the SNEWS Collaboration. 
-The information will be posted into the downtime web page.
-(please note: this choice can be discussed. Should the web page be public? 
-Otherwise we can use e-mail notification to a restricted  subgroup inside the 
-collaboration).
-Any other change in this list does constitute a change of Operational Mode
-and it must be approved by all participants before to be effective.
-
+\section{Participating Experiments}
 
 \begin{itemize}
-\item S-K
+\item Super-K
 \item LVD
 \item SNO
 \end{itemize}
 
-\subsection{Client Computer Management}
+\section{Client Computer Management}
 
-Client computer management at local site is a duty of each participant 
-experiment. 
-No specific requirements are formally requested to the collaboration members. 
-Basic recommendations are however here suggested to improve the security of 
-the whole system since the informations on the socket connection to the SNEWS 
-server(s) are present on the local machines. 
+The following are recommended:
+
 \begin{itemize}
-\item Restricted TCP/IP access outside the main domain of the Client Computer
-\item Login permitted only to SNEWS involved people
-\item TCP/IP address of Client Computer known only to SNEWS involved people  
-\item Restricted access to the full datagram structure 
+\item TCP/IP access should be restricted outside the main domain of the client Computer
+\item Login should permitted only to SNEWS subgroup members.
+\item The TCP/IP address of client computer should be known only to SNEWS subgroup members.
+\item The full datagram structure should be known only to SNEWS subgroup members.
 \item .. anything else..
 \end{itemize}
 Most part of the preceeding recommendations are already effective.
 
-\subsection{Server Computer Management}
-\begin{itemize}
-\item The account management / password management should be restricted only 
-to the SNEWS responsible at each server site.
-\item Generic access guidelines. The access to the the main Server(s) is allowed to each participant experiment with no restiction to check the ouput of coincidence code. However only authorized 
-people within the collaboration may login the server. Each SNEWS member 
-gives the list of peoples (2 each) and TCP/IP machines.
+\section{Server Computer Management}
 
-\item physical security
-\item network security
-\item OS maintenance schedule
-\item Etc. etc.
+Computer at BNL
+\begin{itemize}
+\item 
+\item Details of server management are indicated in the MOU with BNL.
 \end{itemize}
 
-\subsection{Client-Server Communications}
+\section{Client-Server Communications}
 \begin{itemize}
 \item definition of test, silver, and gold (experiment) alerts
 \item The client datagrams employ TCP protocol and 
@@ -85,7 +58,7 @@ IP addresses before data is exchanged.
 \end{enumerate}
 \end{itemize}
 
-\subsection{Coincidence Definition}
+\section{Coincidence Definition}
 
 The general Coincidence Definition implemented in the coincidence code
 may generate two types of alert:``gold'' and ``silver''.\\
@@ -140,11 +113,11 @@ flagged as ``silver''. In this case the consistency and the reliability
 of the alert has to be checked by the experimenters inside the collaboration before any public announcement. No automatic alert has to be sent.
 
 
-\subsection{Annoucement}
+\section{Alert Procedure}
 Both in case of GOLD either SILVER alert a standard approved procedure must 
 be followed before any public release. 
 
-\subsubsection{Gold Procedure}
+\subsection{Gold Procedure}
 In the case of a GOLD alert all SNEWS collaboration member must be informed
 on-line when the automated alert has been sent to the Astro-Community. It is
 up to each experiment member to check the own data quality and reply to the 
@@ -152,7 +125,7 @@ server with a demoted ``bad'' alert if it is the case.
 This includes therefore the possibility of a retraction procedure for a gold 
 alert that must be effective within a reasonnable time.
 
-\subsubsection{Silver Procedure}
+\subsection{Silver Procedure}
 No automated alert should be sent by the coincidence server(s). However,
 since the SNEWS goal in this case will be the most quick check of the detector signals to confirm or reject it definitely,
 a subset of people within the whole collaboration should be promptly notified
@@ -166,7 +139,7 @@ individual experiment can resend its alarm datagram with ``bad''
 changed to ``good'', which may automatically cause an alert message to
 astronomers to be sent if gold conditions are fulfilled.  
 
-\subsection{Public Release outside SNEWS}
+\section{Communication to the Scientific Community}
 There is no restriction on invidual experiments announcing
 something based on individual observation in the case on absence
 of a SNEWS alert, silver or gold, or preceeding it.
@@ -176,9 +149,8 @@ which has been not  yet upgraded to gold. If it is the case the SNEWS
 collaboration requires that the announcing experiment must clearly include the 
 information that a previous ``silver'' alert from the SNEWS server(s) has been 
 received.
-                                                                              
-\subsection{Server - Astro-Community Communications}
-
-..to be fixed...
+                                         
+\subsection{Privacy Agreement}
+                                     
 
 \end{document}
