@@ -1,5 +1,5 @@
 \documentclass{article}
-
+\usepackage{graphicx}
 \begin{document}
 
 \title{SNEWS Operational Mode 1.0}         
@@ -304,7 +304,7 @@ own alarm after data checking.  The server will then automatically
 reevaluate and reissue the alert based on alarms in the past day of its
 memory: the result may be still GOLD, demotion to SILVER, or no alert
 at all.  For the latter case, the SNEWS subgroup is 
-notified, and RETRACTED alert will be issued to the
+notified, and a RETRACTED alert will be issued to the
 same mailing list as for GOLD and posted on the public web page.
 
 \subsection{SILVER Procedure}\label{SILVER}
@@ -343,6 +343,23 @@ members at any time, and later to the experiment collaborations
 by agreement of the SNEWS Advisory Board.
 
 % info on web page for upgrade
+
+\subsection{Summary}
+
+Figure~\ref{fig:flowchart} summarizes the sequence of events 
+and GOLD vs. SILVER decisions.
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=7cm, bb= 40 120 539 820]{flowchart.eps}
+\caption{\label{fig:flowchart} Flowchart summarizing the 
+sequence of events and decisions that determine whether an
+alert is GOLD or SILVER.}
+\end{center}
+\end{figure}
+
+% This figure: in OpenOffice print to PDF with kprinter, then
+% convert to postscript
 
 
 \section{Communication to the Scientific Community}
