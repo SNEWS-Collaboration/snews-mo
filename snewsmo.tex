@@ -63,7 +63,25 @@ does constitute a change of Operational Mode.)
 \subsection{Client-Server Communications}
 \begin{itemize}
 \item definition of test, silver, and gold (experiment) alerts
-\item generic description of security measures / encryption 
+\item The client datagrams employ TCP protocol and 
+are encrypted using OpenSSL.  
+The server listens for connections on a specified port,
+and when a client initiates a connection, several layers
+of checks are employed:
+\begin{enumerate}
+\item The server employs a \texttt{tcp\_wrappers hosts\_access}
+call to check the IP of the client machine against the lists in
+\texttt{hosts.allow/deny}.  These lists allow only the IP addresses
+of the client machines of the involved experiments.
+\item
+The client and server exchange certificates which have been
+verified by the SNEWS Certificate Authority, and reject
+connections if the check fails.
+\item There is an additional check of specific client machine
+IP addresses before data is exchanged.
+\end{enumerate}
+
+
 \end{itemize}
 
 \subsection{Coincidence Definition}
