@@ -272,8 +272,8 @@ For information, see web page http://cyclo.mit.edu/snnet/
 %However the snnet web page should report the cronology of what has been going on.})
 
  
-Note that the server process holds in memory one day's worth of
-alarms.  
+Note that the server process searches one day's worth of its
+alarms in memory.  
 
 
 \subsection{GOLD Procedure}\label{GOLD}
@@ -298,7 +298,7 @@ and the Sky \& Telescope AstroAlert list.
 to avoid ever being in the situation where retraction of a GOLD alert
 is necessary, any experiment may reflag from GOOD to RETRACTED its
 own alarm after data checking.  The server will then automatically
-reevaluate and reissue the alert based on alarms in its one-day
+reevaluate and reissue the alert based on alarms in the past day of its
 memory: the result may be still GOLD, demotion to SILVER, or no alert
 at all.  For the latter case, a RETRACTED alert will be issued to the
 same mailing list as for GOLD.
@@ -327,8 +327,8 @@ resend its alarm datagram if the flag can be changed from DUBIOUS to
 OVERRIDE. All subgroup members must be then informed by
 e-mail. If the GOLD conditions are consequently fulfilled after the
 new alarm dispatch, the GOLD procedure will automatically operate.
-Note that the server process holds in memory one day's worth of
-alarms.
+Note that the server process searches for coincidences
+in the past day's worth of alarms in memory.
 
 \subsection{SNEWS Data Exchange}
 
