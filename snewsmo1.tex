@@ -10,12 +10,22 @@
 \section{SNEWS Operational Mode \#1 effective 1/11/2003}
 
 \subsection{The participants}
-	(Here are listed all experiments that may presently send
+Here are listed all experiments that may presently send
 alerts to the coincidence server(s).  It is understood that a
 temporary lack of participation of one or more or these listed
 experiments for hours, days, or weeks does not constitute a
-change of operational mode.  Any other change in this list
-does constitute a change of Operational Mode.)
+change of operational mode.  
+However it is assumed that long lasting downtime periods ($\delta t>$1 day),
+previuosly scheduled for maintenance, calibration or other items, 
+must be officially notified to the SNEWS Collaboration. 
+The information will be posted into the downtime web page.
+(please note: this choice can be discussed. Should the web page be public? 
+Otherwise we can use e-mail notification to a restricted  subgroup inside the 
+collaboration).
+Any other change in this list does constitute a change of Operational Mode
+and it must be approved by all participants before to be effective.
+
+
 \begin{itemize}
 \item S-K
 \item LVD
@@ -24,11 +34,29 @@ does constitute a change of Operational Mode.)
 
 \subsection{Client Computer Management}
 
+Client computer management at local site is a duty of each participant 
+experiment. 
+No specific requirements are formally requested to the collaboration members. 
+Basic recommendations are however here suggested to improve the security of 
+the whole system since the informations on the socket connection to the SNEWS 
+server(s) are present on the local machines. 
+\begin{itemize}
+\item Restricted TCP/IP access outside the main domain of the Client Computer
+\item Login permitted only to SNEWS involved people
+\item TCP/IP address of Client Computer known only to SNEWS involved people  
+\item Restricted access to the full datagram structure 
+\item .. anything else..
+\end{itemize}
+Most part of the preceeding recommendations are already effective.
 
 \subsection{Server Computer Management}
 \begin{itemize}
-\item account management / password management
-\item generic access guidelines
+\item The account management / password management should be restricted only 
+to the SNEWS responsible at each server site.
+\item Generic access guidelines. The access to the the main Server(s) is allowed to each participant experiment with no restiction to check the ouput of coincidence code. However only authorized 
+people within the collaboration may login the server. Each SNEWS member 
+gives the list of peoples (2 each) and TCP/IP machines.
+
 \item physical security
 \item network security
 \item OS maintenance schedule
@@ -55,32 +83,37 @@ connections if the check fails.
 \item There is an additional check of specific client machine
 IP addresses before data is exchanged.
 \end{enumerate}
-
-
 \end{itemize}
 
 \subsection{Coincidence Definition}
 
+The general Coincidence Definition implemented in the coincidence code
+may generate two types of alert:``gold'' and ``silver''.\\
 A ``gold'' alert is generated if \textit{all} of
-following conditions are met:
+following conditions (1 through 4) are met:
 
 \begin{enumerate}
 
 \item There is a 2 or more -fold coincidence within 10 seconds,
-involving at least
-two different experiments.  (The time window refers to the maximum
+involving at least two different experiments. 
+(The time window refers to the maximum
 separation of any of the alarms in the coincidence.)
 
 \item At least two of the experiments involved
 are at different laboratories.
 
 \item Two or more of the alarms in the coincidence
-are flagged as ``good''.  (Individual experiments flag
-as ``good'' if running conditions are normal, e.g. no
-calibrations, etc.  The specific criteria for a good alarm are defined
-by each experimental collaboration).
-
-\item For all of the experiments involved in the coincidence,
+are flagged as ``good''.  The SNEWS collaboration states
+that flagging the alarms as GOOD or BAD (eventually TEST) should be effective 
+for all detectors when in the operational  mode. 
+Generally a ``good'' flag means a normal running condition, excluding 
+calibrations, tests, and all purposes maintenance.  
+The specific criteria for a GOOD/BAD/TEST alarm are locally defined by
+each experiment. 
+It's up to each participant to flag properly the alarm sent to the SNEWS 
+server(s).  
+ 
+\item For at least two of the experiments involved in the coincidence,
 the rate of good alarms for several past time intervals $\{T_i\}=\{$10 minutes, 1
 hour, 10 hours, 1 day, 3 days, 1 week, 1 month$\}$, must be consistent with
 the $\lambda_{\rm{max}}=$1/week requirement.\footnote{These intervals
@@ -102,26 +135,50 @@ alarm to be ``gold''.
 
 \end{enumerate}
 
-A ``silver'' alert, to be checked by the experimenters,
-satisfies the first criterion but not all of the others.
+When at least the first criterion is satisfied the generated alert is
+flagged as ``silver''. In this case the consistency and the reliability 
+of the alert has to be checked by the experimenters inside the collaboration before any public announcement. No automatic alert has to be sent.
 
 
-\subsection{Annunciation}
-\subsubsection{Silver Procedure (including elevation to Gold)}
+\subsection{Annoucement}
+Both in case of GOLD either SILVER alert a standard approved procedure must 
+be followed before any public release. 
+
+\subsubsection{Gold Procedure}
+In the case of a GOLD alert all SNEWS collaboration member must be informed
+on-line when the automated alert has been sent to the Astro-Community. It is
+up to each experiment member to check the own data quality and reply to the 
+server with a demoted ``bad'' alert if it is the case.
+This includes therefore the possibility of a retraction procedure for a gold 
+alert that must be effective within a reasonnable time.
+
+\subsubsection{Silver Procedure}
+No automated alert should be sent by the coincidence server(s). However,
+since the SNEWS goal in this case will be the most quick check of the detector signals to confirm or reject it definitely,
+a subset of people within the whole collaboration should be promptly notified
+as in the case of ``gold'' alert. 
+Each experiment provides a list of e-mails/names and fix the
+specific notification procedure. SNEWSmo provides pointers to individual procedures. 
 
 \textbf{Upgrading Silver to Gold}
-
 A silver alert may be upgraded to gold as follows:  an
 individual experiment can resend its alarm datagram with ``bad''
 changed to ``good'', which may automatically cause an alert message to
 astronomers to be sent if gold conditions are fulfilled.  
 
-
-\subsubsection{Gold Procedure}
-
-
-
+\subsection{Public Release outside SNEWS}
+There is no restriction on invidual experiments announcing
+something based on individual observation in the case on absence
+of a SNEWS alert, silver or gold, or preceeding it.
+The SNEWS Collaboration agrees also on individual public announcement of a 
+supposed supernova signal following in time a dispatched silver alert
+which has been not  yet upgraded to gold. If it is the case the SNEWS 
+collaboration requires that the announcing experiment must clearly include the 
+information that a previous ``silver'' alert from the SNEWS server(s) has been 
+received.
+                                                                              
 \subsection{Server - Astro-Community Communications}
 
+..to be fixed...
 
 \end{document}
