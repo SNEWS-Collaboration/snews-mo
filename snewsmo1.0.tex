@@ -56,7 +56,7 @@ in the Memorandum of Understanding at\\
 different types of alarm datagrams.
 The alarm datagrams include a packet type, and a level flag.
 The packet type can be PING, ALARM, or RETRACTION.
-The level flag can be TEST, GOOD, DUBIOUS, RETRACTED or OVERRIDE.  
+The level flag can be TEST, GOOD, POSSIBLE, RETRACTED or OVERRIDE.  
 Datagrams having packet field values which do not 
 belong to any of these categories are discarded by the server.
 
@@ -84,7 +84,7 @@ previously sent alarms to be retracted from the server's alarm queues.
 as well as for any high-rate test mode.  The alarm level
 is set to {\it 0}.
 
-\item DUBIOUS : This flag indicates an alarm
+\item POSSIBLE : This flag indicates an alarm
 generated during scheduled operations (i.e. maintenance, calibration,
 tests, etc.) or other known anomalous conditions. It is up to each
 experiment to set this flag inside the packet when appropriate.  The
@@ -190,7 +190,7 @@ satisfied for the current operational mode.
 \item Two or more of the alarms in the coincidence
 are flagged as GOOD.  It is the responsibility of each participant
 experiment to flag the alarm sent to the SNEWS server(s)
-appropriately. The specific criteria for a GOOD/DUBIOUS/TEST alarms
+appropriately. The specific criteria for a GOOD/POSSIBLE/TEST alarms
 are locally defined by each experiment according to the guidelines 
 in section \ref{alarm}.
   
@@ -238,7 +238,7 @@ information:
 \begin{itemize}
 \item UTC time of the coincidence,
 \item all detectors involved in the coincidence, and
-\item the types of alarms (GOOD, DUBIOUS) for each experiment involved
+\item the types of alarms (GOOD, POSSIBLE) for each experiment involved
 in the coincidence
 \end{itemize}
 
@@ -299,7 +299,7 @@ and the Sky \& Telescope AstroAlert list.
 
 \noindent {\bf Demoting from GOLD:}\\ Although we hope
 to avoid ever being in the situation where retraction of a GOLD alert
-is necessary, any experiment may reflag from GOOD (or DUBIOUS) to RETRACTED its
+is necessary, any experiment may reflag from GOOD (or POSSIBLE) to RETRACTED its
 own alarm after data checking.  The server will then automatically
 reevaluate and reissue the alert based on alarms in the past day of its
 memory: the result may be still GOLD, demotion to SILVER, or no alert
@@ -327,7 +327,7 @@ the SNEWS shiftworker.\\
 \noindent \textbf{Upgrading from SILVER to GOLD}\\
 A SILVER alert may be upgraded to GOLD if the requirements are
 confirmed in a second step. Any individual experiment is expected to
-resend its alarm datagram if the flag can be changed from DUBIOUS to
+resend its alarm datagram if the flag can be changed from POSSIBLE to
 OVERRIDE. All subgroup members must be then informed by
 e-mail. If the GOLD conditions are consequently fulfilled after the
 new alarm dispatch, the GOLD procedure will automatically operate.
