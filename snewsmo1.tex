@@ -2,10 +2,13 @@
 
 \begin{document}
 
-\title{SNEWS Operational Mode \#1 effective 1/11/2003}         
-\author{SNEWS Collaboration}
-\date{\today}
+\title{SNEWS Operational Mode 1.0}         
+\date{Effective \today}
 \maketitle
+
+This document provides specifications for the instance of
+the class defined in the SNEWS Operational Mode Template document.
+
 
 \section{Participating Experiments}
 
@@ -17,53 +20,58 @@ The participating experiments for this mode are:
 \item SNO.
 \end{itemize}
 
+\section{Privacy Agreement}\label{privacy}
+
+The SNEWS inter-experiment privacy agreement can be found at 
+{\tt http://cyclo.mit.edu/snnet/wg}.
+
 \section{Client Computer Management}
 
-The following are recommended:
+Criteria of the privacy agreement (section~\ref{privacy}) should
+be strictly observed for SNEWS-related accounts on the client computer.
+In addition, the following are recommended:
 
 \begin{itemize}
-\item TCP/IP access should be restricted outside the main domain of the 
-client Computer.
-\item Login should permitted only to SNEWS subgroup members.
-\item The TCP/IP address of client computer should be known only to SNEWS subgroup members.
-\item The full datagram structure should be known only to SNEWS subgroup members.
-\item .. anything else..
+\item Outside the main domain of the 
+client computer, TCP/IP access to the client machine should be restricted.
+\item Login to the client computer should permitted only to SNEWS subgroup 
+members.
+\item The TCP/IP address of the client computer should be known only to 
+SNEWS subgroup members.
+\item 
 \end{itemize}
-Most part of the preceding recommendations are already effective.
 
 \section{Server Computer Management}
 
 In this mode of operation, there is one server located at Brookhaven
 National Laboratory, and the BNL SNEWS sysadmin is Brett Viren.
-The details of the server management, addressing all
+The details of the server management, which address all
 security and maintenance issues, can be found at
-in the Memorandum of Understanding at
+in the Memorandum of Understanding at\\
 {\tt http://cyclo.mit.edu/snnet/bnl\_mou}.
 
 \section{Client-Server Communications}\label{alarm}
 \begin{itemize}
 \item Each participating experiment may generate and send to the server
-3 different types of alarm defined as TEST or BAD or GOOD and 
-properly flagged in the datagram.({\it The type name may be conveniently 
+3 different types of alarm datagrams, defined and 
+flagged as TEST or DUBIOUS or GOOD.({\it The type name may be conveniently 
 changed as well as the flag number for the coincidence code.})
 \begin{itemize}
-\item TEST: This code has to be used only to check the client-server
-connection. The datagram structure is fixed: all parameters in the
-datagram, different from flag and
-experiment code, must be set to {\it 0}. Alarm flag is set to {\it 0}. 
 
-\item BAD : This code flags alarms generated when scheduled operations
-(i.e. maintenance, calibration, tests, etc.) on the detector are going on. It's
-up to each experiment to set this flag inside the packet when it's supposed
-necessary. 
-All parameters in the datagram should be properly filled according
-to the time of the event and the experiment code. Alarm flag is set to 
+\item TEST: This flag indicates a datagram packet intended for test use
+as well as for any high-rate test mode.  The alarm level
+is set to {\it 0}.
+
+\item DUBIOUS : This flag indicates an alarm
+generated during scheduled operations
+(i.e. maintenance, calibration, tests, etc.) on the detector. It is
+up to each experiment to set this flag inside the packet when appropriate.
+The alarm level is set to
 {\it 1}.
 
-\item GOOD: This code flags alarms generated in normal detection conditions.
-All parameters in the datagram should be properly filled according
-to the time of the event and the experiment code. Alarm flag is set to 
-{\it 2}.
+\item GOOD: This flag indicates an alarm generated during
+normal detection conditions.  The alarm level is set to {\it 2}.
+
 \end{itemize}
  
 
@@ -82,7 +90,7 @@ The client and server exchange certificates which have been
 verified by the SNEWS Certificate Authority, and reject
 connections if the check fails.
 \item There is an additional check of specific client machine
-IP addresses before data is exchanged.
+IP addresses against a list of allowed addresses before data is exchanged.
 \end{enumerate}
 \end{itemize}
 
@@ -91,16 +99,13 @@ IP addresses before data is exchanged.
 SNEWS shifts will be coordinated by xxx, and will be run on
 a week by week basis.  During each shift week, the shifter will
 be equipped with a cell phone and laptop with cellular
-capabibility. A short and simple to use manual on shifter's 
-responsibilities will be provided. Daily duties, alert procedures and
-actions, e-mail and phone numbers of all subgroup members, SNEWS
-coordinator, server manager should be included.
+capability. 
 
 \subsection{Alert Responsibilities}
 
 % More details on alert
 Upon receipt of coincidence, either SILVER or GOLD, the shifter
-must immediately log on to check that SNEWS code is running
+must immediately log on to the server to check that SNEWS code is running
 correctly, according to logs.  If everything seems OK, for 
 the case of a SILVER-GOLD  alert, he or she must follow the procedure
 outlined in sections \ref{SILVER}-\ref{GOLD}.
@@ -115,7 +120,7 @@ At daily intervals, the shifter must check the following:
 \item The gcserver process is running normally.
 \item That there is network connectivity to all clients. ({\it may
 require communication })
-\item ping plots... other checks...
+\item Any other checks... pings etc.
 
 \end{itemize}
 
@@ -174,9 +179,10 @@ alarm to be GOLD.
 \end{enumerate}
 
 When at least the first criterion is satisfied the generated alert is
-flagged as SILVER. In this case the consistency and the reliability 
-of the alert has to be checked by the experimenters inside the collaboration before any public announcement. No alert will be sent by SNEWS until (and if)
-there is an upgrade to GOLD.
+flagged as SILVER. In this case the consistency and the reliability of
+the alert has to be checked by the experimenters inside the
+collaboration before any public announcement. No alert will be sent to
+the community by SNEWS until (and if) there is an upgrade to GOLD.
 
 \section{Alert Procedure}
 ({\it This is a very important section. We are fixing the way to procede
@@ -185,7 +191,7 @@ comments/modifications/suggestions you think are useful. These are
 just the first ideas on. In some case  only the philosphy on what we need 
 to do is specified with no technical solutions yet.}\\
 
-\subsection{General Considerations}
+\subsection{General Considerations and Procedures}
 
 Whichever the automated generated alert is -GOLD or SILVER- the
 general approved procedure here enclosed will be strictly applied. In
@@ -227,14 +233,14 @@ will now be discussed.
 
 ({\it Question: what's the current time limit to regenerate the coincidence?
 How long do we wait? We need to define this to avoid retraction after long 
-time. If another server will be on-line we have to fix some priority between 
+time. If another server will be online we have to fix some priority between 
 them, ore we can have a double notification.
 })
 
 \subsection{GOLD Procedure}\label{GOLD}
 
 In the case of a GOLD alert all SNEWS subgroup members must be informed
-on-line at the time of the automated alert is sent to the astronomical
+online at the time of the automated alert is sent to the astronomical
 community.
 Any outcoming, private or public, communication of each experiment following 
 this moment should always 
@@ -291,7 +297,4 @@ SILVER alert which has not yet been upgraded to GOLD.  In this case
 the information that a previous SILVER alert from the
 SNEWS server(s) has been received should be cited.
                                          
-\subsection{Privacy Agreement}
-                                     
-
 \end{document}
