@@ -1,0 +1,128 @@
+\documentclass{article}
+
+\begin{document}
+
+\title{SNEWS Operation Mode Description}         
+\author{SNEWS Collaboration}
+\date{\today}
+\maketitle
+
+\section{Introduction}      
+The purpose of this document is to specify a template for operational
+mode documents of the SuperNova Early Warning System (SNEWS).
+
+It is the conviction of the participants that SNEWS should operate
+under conditions that are:
+
+\begin{itemize}
+\item Documented and available at all times to the participants.
+\item Approved by the participants.
+\item Consistent with the objectives of SNEWS, those being:
+\begin{itemize}
+\item ``Prompt'':
+\item ``Positive''
+\item ``Private''
+\end{itemize}
+\end{itemize}
+
+It is also implicit that SNEWS will develop in a series of managed
+transitions between operational modes. For instance, new experiments
+or new coincidence servers will be added or removed.  Each operational
+mode will be identified by a number and the date when it came into
+effect, and will specify in detail the participants, the coincidence
+conditions, the alert classifications, and the procedures for action
+in case of different alarm conditions.  This document outlines a
+template for a operational mode document.
+
+One caveat is that any details that would assist individuals in locating
+and gaining access to the SNEWS servers, and information that could be
+used to simulate SNEWS alerts, will be confined to an Appendix which
+will not be widely distributed but is nonetheless available to certain
+members of the participating experiments.
+
+
+\section{Operational Mode Template}
+
+\subsection{Participating Experiments}
+
+This section will list all experiments that may send alerts to the
+coincidence server(s).  It is understood that a temporary lack of
+participation of one or more or these listed experiments for hours,
+days, or weeks does not constitute a change of operational mode.  Any
+other change in this list does constitute a change of Operational
+Mode. However it is assumed that long lasting downtime periods
+($\delta t>$1 day), previuosly scheduled for maintenance, calibration
+or other items, must be officially notified to the SNEWS
+Collaboration. The information will be posted into the downtime web
+page.
+
+$(please note: this choice can be discussed. Should the web page be public? 
+Otherwise we can use e-mail notification to a restricted  subgroup inside the 
+collaboration).$
+
+ For example, the list could be:
+
+\begin{itemize}
+\item Super-K
+\item LVD
+\item SNO
+\end{itemize}
+
+\subsection{Client Computer Management}
+
+Client computer management at each local site is a duty of each
+participant experiment. No specific requirements are formally imposed
+on the collaboration members. Basic recommendations will however
+suggested here to improve the security of the whole system, since the
+information passed via socket connection to the SNEWS server(s) are
+present on the local machines.
+
+
+\subsection{Server Computer Management}
+
+The SNEWS server are managed according to memoranda
+of understanding with national laboratory or similar sites;
+this section will list the currently active coincidence
+servers and provide pointers to the currently active memoranda
+of understanding.  A significant MOU change, or permanent addition
+or removal of a coincidence server from the network,  
+constitutes a change of operational mode.
+
+%\begin{itemize}
+%\item account management / password management
+%\item generic access guidelines
+%\item physical security
+%\item network security
+%\item OS maintenance schedule
+%\item Etc. etc.
+%\end{itemize}
+
+\subsection{Client-Server Communications}
+
+This section will define individual experiment alarm categories 
+($e.g.$ test, silver, gold) and will describe the 
+communications protocol between client and server (encryption
+protocol, access check requirements, etc).
+
+\subsection{Coincidence Definition}
+
+This section will define the coincidence conditions for different
+SNEWS alert categories ($e.g.$ test, silver, gold).
+
+\subsection{Alert Procedure}
+
+This section will describe in detail the procedure to be followed by
+SNEWS members and individual experiments for the case of each type of
+coincidence alert.
+
+\subsection{Communication to the Scientific Community}
+
+This section will describe the means of communication
+of the alert information to the astronomical community.
+
+\subsection{Privacy Agreement}
+This section will contain a pointer to the current SNEWS privacy
+agreement, which defines guidelines for communication
+of SNEWS-related information.
+
+\end{document}
