@@ -53,12 +53,12 @@ in the Memorandum of Understanding at\\
 \begin{itemize}
 
 \item Each participating experiment may generate and send to the server
-for different types of alarm datagrams.
+different types of alarm datagrams.
 The alarm datagrams include a packet type, and a level flag.
 The packet type can be PING, ALARM, or RETRACTION.
 The level flag can be TEST, GOOD, DUBIOUS, RETRACTED or OVERRIDE.  
 Datagrams having packet field values which do not 
-correspond to these categories are discarded by the server.
+belond to any of these categories are discarded by the server.
 
 \noindent \underline{Packet Types}
 
@@ -94,7 +94,7 @@ alarm level is set to {\it 1}.
 normal detection conditions.  The alarm level is set to {\it 2}.
 
 \item RETRACTED: This flag is set for retraction 
-packets (note that this informtion is redundant -- all packets of
+packets (note that this information is redundant -- all packets of
 RETRACTION type will be retracted regardless of level flag).  The
 alarm level is set to {\it -1}.
 
@@ -165,7 +165,7 @@ of any problems.
 \section{Coincidence Definition}
 
 The general coincidence definition implemented in the coincidence code
-may generate either one two types of alert: GOLD or SILVER.\\
+may generate either of two types of alert: GOLD or SILVER.\\
 A GOLD alert is generated if {\it all} of
 following conditions (1 through 4) are met:
 
@@ -184,13 +184,14 @@ satisfied for the current operational mode.
 are flagged as GOOD.  It is the responsibility of each participant
 experiment to flag the alarm sent to the SNEWS server(s)
 appropriately. The specific criteria for a GOOD/DUBIOUS/TEST alarms
-are locally defined by each experiment according to the guidelines defined
+are locally defined by each experiment according to the guidelines 
 in section \ref{alarm}.
   
  \item For at least two of the experiments involved in the
  coincidence, the rate of good alarms for several past time intervals
  $\{T_i\}=\{$10 minutes, 1 hour, 10 hours, 1 day, 3 days, 1 week, 1
- month$\}$, must be consistent with the $\lambda_{\rm{max}}=$1/week
+ month$\}$ preceding the first alarm of the coincidence candidate, 
+ must be consistent with the $\lambda_{\rm{max}}=$1/week
  requirement.\footnote{These intervals represent real time, not live
  time, since full live time information will not be available to the
  coincidence server.}  We define the precise condition as follows: if
@@ -235,8 +236,8 @@ in the coincidence
 \end{itemize}
 
 will be automatically sent by the server to the SNEWS subgroup
-members.   Information may also be posted on a restricted SNEWS
-subgroup page.
+members.   The nformation may also be posted to a restricted SNEWS
+subgroup page for SILVER, and a public page for GOLD.
 
 An example of the alert message follows:
 
@@ -251,15 +252,15 @@ Subject: Gold Coincidence Alert
 Coincidence rating: GOLD
 Alarms in the coincidence:
 Experiment: 1 Super-K
-Level: 1 
+Level: GOOD
 Time: Mar 16 2004 16:04:04.55000000
 ---------------------------------------------
 Experiment: 3 SNO
-Level: 1 
+Level: GOOD 
 Time: Mar 16 2004 16:04:05.02300000
 ---------------------------------------------
 Experiment: 5 LVD
-Level: 1 
+Level: GOOD 
 Time: Mar 16 2004 16:04:05.10300000
 ---------------------------------------------
 
@@ -267,12 +268,7 @@ For information, see web page http://cyclo.mit.edu/snnet/
 
 \end{verbatim}
 
-%({\it Should we post on-line the information in to a 
-%restricted WEB page on the server? May be useful in the case e-mail is not available. 
-%However the snnet web page should report the cronology of what has been going on.})
-
- 
-Note that the server process searches one day's worth of its
+Note that the server process searches the past day's worth of its
 alarms in memory.  
 
 
@@ -300,7 +296,8 @@ is necessary, any experiment may reflag from GOOD to RETRACTED its
 own alarm after data checking.  The server will then automatically
 reevaluate and reissue the alert based on alarms in the past day of its
 memory: the result may be still GOLD, demotion to SILVER, or no alert
-at all.  For the latter case, a RETRACTED alert will be issued to the
+at all.  For the latter case, the SNEWS subgroup is 
+notified, and RETRACTED alert will be issued to the
 same mailing list as for GOLD.
 
 \subsection{SILVER Procedure}\label{SILVER}
