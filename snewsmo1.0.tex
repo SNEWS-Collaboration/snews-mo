@@ -195,7 +195,7 @@ in section \ref{alarm}.
  time, since full live time information will not be available to the
  coincidence server.}  We define the precise condition as follows: if
  an experiment sent $\{n_i\}$ alarms in each of the last intervals
- $\{T_i\}$, then the Poisson probabilities $\mathcal{P}_i$ for $n_i$
+ $\{T_i\}$ before the first event of the coincidence, then the Poisson probabilities $\mathcal{P}_i$ for $n_i$
  or more alarms in $T_i$,
 
 $\mathcal{P}_i=\sum_{n=n_i}^{\infty}(\lambda_{\rm{max}} T_i)^{n}e^{-\lambda_{\rm{max}} T_i}/n!$,
@@ -241,21 +241,30 @@ subgroup page.
 An example of the alert message follows:
 
 \begin{verbatim}
-------------------------------
-*** SENDING ALERT ***
+Date: Wed, 17 Mar 2004 09:46:24 -0500
+From: SN Alert <snalert@bnlboom1.bnl.gov>
+To: an.observer@mydomain.com
+Subject: Gold Coincidence Alert
+
+---------------------------------------------
+*** SNEWS ALERT ***
 Coincidence rating: GOLD
 Alarms in the coincidence:
-
-Experiment: Super-K
-Level: GOOD
-Time: January 3, 2005 10:01:03 
-
-Experiment: LVD
-Level: GOOD
-Time: January 3, 2005 10:01:04
+Experiment: 1 Super-K
+Level: 1 
+Time: Mar 16 2004 16:04:04.55000000
+---------------------------------------------
+Experiment: 3 SNO
+Level: 1 
+Time: Mar 16 2004 16:04:05.02300000
+---------------------------------------------
+Experiment: 5 LVD
+Level: 1 
+Time: Mar 16 2004 16:04:05.10300000
+---------------------------------------------
 
 For information, see web page http://cyclo.mit.edu/snnet/
-------------------------------
+
 \end{verbatim}
 
 %({\it Should we post on-line the information in to a 
