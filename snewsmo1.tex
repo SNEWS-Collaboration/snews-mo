@@ -22,7 +22,8 @@ The participating experiments for this mode are:
 The following are recommended:
 
 \begin{itemize}
-\item TCP/IP access should be restricted outside the main domain of the client Computer
+\item TCP/IP access should be restricted outside the main domain of the 
+client Computer.
 \item Login should permitted only to SNEWS subgroup members.
 \item The TCP/IP address of client computer should be known only to SNEWS subgroup members.
 \item The full datagram structure should be known only to SNEWS subgroup members.
@@ -41,7 +42,31 @@ in the Memorandum of Understanding at
 
 \section{Client-Server Communications}
 \begin{itemize}
-\item definition of test, silver, and gold (experiment) alerts
+\item Each participating experiment may generate and send to the server
+3 different types of alarm defined as TEST BAD GOOD and 
+properly flagged in the datagram.({\it The type name may be conveniently 
+changed as well as the flag number inside the coincidence code.})
+\begin{itemize}
+\item TEST: This code has to be used only to check the client-server
+connection. The datagram structure is fixed: all parameters in the
+datagram, different from flag and
+experiment code, must be set to {\it 0}. Alarm flag is set to {\it 0}. 
+
+\item BAD : This code flags alarms generated when scheduled operations
+(i.e. maintenance, calibration, test, etc.) on the detector are going on. It's
+up to each experiment to set this flag inside the packet when it's supposed
+necessary. 
+All parameters in the datagram should be properly filled according
+to the time of the event and the experiment code. Alarm flag is set to 
+{\it 1}.
+
+\item GOOD: This code flags alarms generated in normal detection conditions.
+All parameters in the datagram should be properly filled according
+to the time of the event and the experiment code. Alarm flag is set to 
+{\it 2}.
+\end{itemize}
+ 
+
 \item The client datagrams employ TCP protocol and 
 are encrypted using OpenSSL.  
 The server listens for connections on a specified port,
@@ -66,16 +91,21 @@ IP addresses before data is exchanged.
 SNEWS shifts will be coordinated by xxx, and will be run on
 a week by week basis.  During each shift week, the shifter will
 be equipped with a cell phone and laptop with cellular
-capabibility.
+capabibility. A short and simple to use manual on the shifter 
+responsibilities will be provided. Daily duties, alert procedures and
+actions, e-mail and phone numbers of all subgroup members, SNEWS
+coordinator, server manager should be included.
 
 \subsection{Alert Responsibilities}
 
 % More details on alert
-Upon receipt of coincidence, either silver or gold, the shifter
+Upon receipt of coincidence, either SILVER or GOLD, the shifter
 must immediately log on to check that SNEWS code is running
 correctly, according to logs.  If everything seems OK, for 
-the case of a silver alert, he or she must follow the procedure
-outlined in section~\ref{silver}.
+the case of a SILVER/GOLD  alert, he or she must follow the procedure
+outlined in section \ref{silver}/\ref{gold}.
+({\it If something seems to be wrong, whatever the alert is, the consequent  
+actions for the shifter must be here defined.})
 
 \subsection{Maintenance and Monitoring Responsibilities}
 
@@ -203,7 +233,7 @@ time. If another server will be on-line we have to fix some priority between
 them, ore we can have a double notification.
 })
 
-\subsection{Gold Procedure}
+\subsection{Gold Procedure}\label{gold}
 
 In the case of a GOLD alert all SNEWS subgroup members must be informed
 on-line at the time of the automated alert is sent to the astronomical
