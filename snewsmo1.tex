@@ -35,7 +35,7 @@ National Laboratory, and the SNEWS sysadmin there is Brett Viren.
 The details of the server management, addressing all
 security and maintenance issues, can be found at
 in the Memorandum of Understanding at
-\texttt{http://cyclo.mit.edu/snnet/bnl_mou}.
+{\it http://cyclo.mit.edu/snnet/bnl\_mou}.
 
 \section{Client-Server Communications}
 \begin{itemize}
@@ -46,9 +46,9 @@ The server listens for connections on a specified port,
 and when a client initiates a connection, several layers
 of checks are employed:
 \begin{enumerate}
-\item The server employs a \texttt{tcp\_wrappers hosts\_access}
+\item The server employs a {\it tcp\_wrappers hosts\_access}
 call to check the IP of the client machine against the lists in
-\texttt{hosts.allow/deny}.  These lists allow only the IP addresses
+{\it hosts.allow/deny}.  These lists allow only the IP addresses
 of the client machines of the involved experiments.
 \item
 The client and server exchange certificates which have been
@@ -63,7 +63,7 @@ IP addresses before data is exchanged.
 
 The general Coincidence Definition implemented in the coincidence code
 may generate two types of alert:``gold'' and ``silver''.\\
-A ``gold'' alert is generated if \textit{all} of
+A ``gold'' alert is generated if {\it all} of
 following conditions (1 through 4) are met:
 
 \begin{enumerate}
@@ -113,32 +113,87 @@ When at least the first criterion is satisfied the generated alert is
 flagged as ``silver''. In this case the consistency and the reliability 
 of the alert has to be checked by the experimenters inside the collaboration before any public announcement. No automatic alert has to be sent.
 
-
 \section{Alert Procedure}
-Both in case of GOLD either SILVER alert a standard approved procedure must 
-be followed before any public release. 
+({\it This is a very important section. We are fixing the way to procede
+in the case of a coincidence. Please read carefully and add any 
+comments/modifications/suggestions you think are useful. These are 
+just the first ideas on. In some case  only the philosphy on what we need 
+to do is specified with no technical solutions yet.}\\
+
+Whichever the automated generated alert is -GOLD or SILVER- the general 
+approved procedure here enclosed will be strictly applied. 
+In the same context any public 
+release both of the Collaboration either of each Experiment should respect
+the general policies here defined.\\ 
+In order to have the maximum knowledge on the alert structure the participant experiments 
+agree that all relevant parameters  {\it -UTC time of the coincidence, 
+involved detectors, type of alarms-} will be automatically forwarded by the server(s) to the 
+SNEWS subgroup members at the time of the dispatched alert. They also agree that the UTC
+time of the coincidence and the number of detectors which generate it may be used either for any
+scientific purpose or for any outreach communication. 
+In this case the SNEWS origin of these informations should be always clearly cited.
+
+({\it Should we post on-line the information in to a 
+restricted WEB page on the server? May be useful in the case e-mail is not available. 
+However the snnet web page should report the cronology of what has been going on.})
+
+Each experiment provides a list of e-mails/names and fix the specific notification procedure. 
+It is up to each experiment members to check its own data quality and forward
+to the SNEWS subgroup any information which may affect the alert type 
+in upgrading or demoting it as well to resend the datagram to the server(s).
+To avoid misunderstanding the UTC time of a re-forwarded alarm must be 
+preserved.
+ 
+Specific procedures for GOLD and SILVER alert and consequent actions 
+are therefore discussed.
+
+({\it Question: what's the current time limit to regenerate the coincidence?
+How long do we wait? We need to define this to avoid retraction after long 
+time. If another server will be on-line we have to fix some priority between 
+them, ore we can have a double notification.
+})
 
 \subsection{Gold Procedure}
-In the case of a GOLD alert all SNEWS collaboration member must be informed
-on-line when the automated alert has been sent to the Astro-Community. It is
-up to each experiment member to check the own data quality and reply to the 
-server with a demoted ``bad'' alert if it is the case.
-This includes therefore the possibility of a retraction procedure for a gold 
-alert that must be effective within a reasonnable time.
+In the case of a GOLD alert all SNEWS collaboration members must be informed
+on-line at the time of the automated alert is sent to the Astro-Community. 
+Any outcoming, private or public, comunication of each Experiment following 
+this moment should always 
+mention the presence of the GOLD alert, possibly with all public informations
+therein contained.\\
+{\bf Demoting from GOLD to SILVER}\\
+Any Experiment can individually reflag from GOOD to BAD its own alarm after
+data checking and must procede as expected by the above general policies.
+Doing this, the possibility of an automated retraction procedure for a GOLD 
+alert is taken into account and it must be effective within a reasonnable
+time to be processed by the server(s). 
+In this case all SNEWS collaboration members as well as 
+the Astro-Community must be immediately notified in the same way used to
+send the GOLD one alert. The presence of a lower significance alert should 
+still be included.({\it Does everyone agree on this point?})
 
 \subsection{Silver Procedure}
-No automated alert should be sent by the coincidence server(s). However,
-since the SNEWS goal in this case will be the most quick check of the detector signals to confirm or reject it definitely,
-a subset of people within the whole collaboration should be promptly notified
-as in the case of ``gold'' alert. 
-Each experiment provides a list of e-mails/names and fix the
-specific notification procedure. SNEWSmo provides pointers to individual procedures. 
+No automated alert is generated by the coincidence server(s). 
+Only the  SNEWS subgroup members are immediately notified 
+with all informations needed for the prompt check of the data in order to 
+confirm or reject it definitely.\\
+\textbf{Upgrading from SILVER to GOLD}\\
+A SILVER alert may be upgraded to GOLD if the requirements are confirmed in a second step. Any
+individual Experiment is expected to resend its alarm datagram if the flag must be  changed from 
+BAD to GOOD. All subgroup members must be informed at the same time
+by e-mail. If the GOLD conditions are consequently fulfilled after the new alarm dispatch,  
+the GOLD procedure will automatically operate.
 
-\textbf{Upgrading Silver to Gold}
-A silver alert may be upgraded to gold as follows:  an
-individual experiment can resend its alarm datagram with ``bad''
-changed to ``good'', which may automatically cause an alert message to
-astronomers to be sent if gold conditions are fulfilled.  
+\subsection{Final Agreements}
+
+The SNEWS collaboration agrees that all server(s)-clients informations exchange 
+during a supposed SN alert will be saved both on the wep page and the server(s) 
+log file. All these informations will be available for all subgroup members
+at time of the event and after. 
+They will be released on request to the SNEWS collaboration members 24 (?) hours after the event.
+({\it 24 hours may be a too long time?})
+There's no restriction for any subgroup member to forward the informations
+above inside the SNEWS collaboration  24 (?) hours after the event.
+
 
 \section{Communication to the Scientific Community}
 There is no restriction on invidual experiments announcing
