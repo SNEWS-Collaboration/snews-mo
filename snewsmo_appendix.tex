@@ -7,8 +7,60 @@
 \date{\today}
 \maketitle
 
-\section{Packet Definition}      
+This document, which should
+be easily accessible to the subgroup only,
+contains operating mode details which are not intended
+for wide distribution.  
 
+\section{Datagram Packet Definitions}      
+
+The C structures of the alarm datagram packets of the three types 
+(PING, ALARM, RETRACTION) are shown below.\\
+
+
+\noindent
+\underline{\textbf{PING packet:}}
+
+\begin{verbatim}
+struct check_packet {           /* packet_id = 3 */
+        u_short packet_id;      /* What type of packet? */  
+        u_short experiment;     /* Which experiment? */
+        LONG   datetime[3];     /* Time word : ddmmyy,hhmmss,ns */
+        ULONG   sequence;       /* Counter to allow send/receive checks */
+};
+\end{verbatim}
+
+\noindent
+\underline{\textbf{ALARM packet:}}
+
+\begin{verbatim}
+struct alarm_packet {   /* packet_id = 1 */
+  u_short packet_id;    /* What type of packet? */  
+  u_short experiment;   /* Which experiment? */
+  u_short level;        /* Alarm level */
+  u_short dummy;
+  ULONG   sequence;     /* Counter to allow send/receive checks */
+  LONG   datetime[3];   /* Time word : ddmmyy,hhmmss,ns */
+  ULONG   signif;       /* The experiment's signif. estimate *10^6 */
+};
+
+\end{verbatim}
+
+\noindent
+\underline{\textbf{RETRACTION packet:}}
+
+\begin{verbatim}
+struct retract_packet { /* packet_id = 2 */ 
+  u_short packet_id;    /* What type of packet? */   
+  u_short experiment;   /* Which experiment? */ 
+  u_short level;        /* necessary for high-rate test */ 
+  LONG  starttime[3];   /* datetime to start retracting packets */ 
+  LONG  endtime[3];     /* datetime to end retracting packets */ 
+  ULONG   sequence;     /* Counter to allow send/receive checks */ 
+}; 
+
+\end{verbatim}
+Note that not all fields of the packets are used by the server.
 
 \section{Call Lists}      
 
