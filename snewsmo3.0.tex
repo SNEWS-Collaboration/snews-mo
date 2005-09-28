@@ -2,7 +2,7 @@
 \usepackage{graphicx}
 \begin{document}
 
-\title{SNEWS Operational Mode 2.0}         
+\title{SNEWS Operational Mode 3.0}         
 \date{Effective October 15, 2005}
 \maketitle
 
@@ -191,7 +191,7 @@ satisfied for the current operational mode.
 \item Two or more of the alarms in the coincidence
 are flagged as GOOD.  It is the responsibility of each participant
 experiment to flag the alarm sent to the SNEWS server(s)
-appropriately. The specific criteria for a GOOD/POSSIBLE/TEST alarms
+appropriately. The specific criteria for a GOOD/POSSIBLE/TEST/OVERRIDE alarms
 are locally defined by each experiment according to the guidelines 
 in section \ref{alarm}.
   
@@ -240,16 +240,19 @@ For both SILVER or GOLD coincidence cases, a message containing the following
 information:
 
 \begin{itemize}
-\item UTC time of the coincidence,
 \item all detectors involved in the coincidence, and
-\item the types of alarms (GOOD, POSSIBLE) for each experiment involved
-in the coincidence, 
-\item the time of each alarm, and
-\item if available: duration, number of signal events, RA, dec, and 
-direction error
-for the alarms in the coincidence.  If this information is not
-available, default values of zero are given, and 360 degrees for the 
-direction error.
+\item the types of alarms (GOOD, POSSIBLE, OVERRIDE) for each
+experiment involved in the coincidence,
+\item UTC time of each alarm in the coincidence, and
+
+\item if available, information about the burst: 
+duration (seconds), number of signal events, right
+ascension and declination (degrees) of the inferred supernova
+direction, and error on the direction (degrees), for
+the alarms in the coincidence.  If this information is not available,
+default values of zero are given, and 360 degrees for the direction
+error.
+
 \end{itemize}
 
 will be automatically sent by the server to the SNEWS subgroup
@@ -259,7 +262,9 @@ subgroup page for SILVER, and a public page for GOLD.
 For an INDIVIDUAL alert, the same information as above is sent
 for the single OVERRIDE level experiment.
 
-An example of the alert message follows:
+An example of the alert message follows, for which extra information
+is available for one out of the three experiments in the coincidence;
+the other experiments have default values.
 
 \begin{verbatim}
 Date: Wed, 17 Mar 2004 09:46:24 -0500
@@ -274,14 +279,29 @@ Alarms in the coincidence:
 Experiment: 1 Super-K
 Level: GOOD
 Time: Mar 16 2004 16:04:04.55000000
+Duration:    0.00
+No. of signal events:    0.00
+Right Ascension:    0.00
+Declination:    0.00
+Error:  360.00
 ---------------------------------------------
 Experiment: 3 SNO
 Level: GOOD 
 Time: Mar 16 2004 16:04:05.02300000
+Duration:    6.00
+No. of signal events:    400.00
+Right Ascension:    23.00
+Declination:    -82.00
+Error:  10.00
 ---------------------------------------------
 Experiment: 5 LVD
 Level: GOOD 
 Time: Mar 16 2004 16:04:05.10300000
+Duration:    0.00
+No. of signal events:    0.00
+Right Ascension:    0.00
+Declination:    0.00
+Error:  360.00
 ---------------------------------------------
 
 For information, see web page http://snews.bnl.gov/
@@ -430,7 +450,7 @@ a SNEWS alert, SILVER or GOLD, or preceding or following any SNEWS
 alert message.  Any individual experiment may publicly announce a
 supposed supernova signal following a dispatched SILVER alert which
 has not yet been upgraded to GOLD, or a GOLD alert.  In these cases
-the information that a previous alert from the SNEWS server(s) has
+the information that a previous alert from the SNEWS server has
 been received should be cited.
                                         
 \section{Changelog}
@@ -442,8 +462,10 @@ been received should be cited.
 flowchart accordingly.
 
 \item Send GOLD coincidence if a single OVERRIDE is included,
-regardless of other condiation (previously at least
+regardless of other condition (previously at least
 one GOOD and one OVERRIDE was required).
+
+\item Specify additional allowed fields in the alarm.
 \end{itemize}
 
 \noindent
