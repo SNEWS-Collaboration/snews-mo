@@ -56,7 +56,7 @@ in the Memorandum of Understanding at\\
 different types of alarm datagrams.
 The alarm datagrams include a packet type, and a level flag.
 The packet type can be PING, ALARM, or RETRACTION.
-The level flag can be TEST, GOOD, POSSIBLE, RETRACTED or OVERRIDE.  
+The level flag can be TEST, GOOD, POSSIBLE, RETRACTED or CONFIRMED.  
 Datagrams having packet field values which do not 
 belong to any of these categories are discarded by the server.
 
@@ -98,7 +98,7 @@ packets (note that this information is redundant -- all packets of
 RETRACTION type will be retracted regardless of level flag).  The
 alarm level is set to {\it -1}.
 
-\item OVERRIDE: This flag indicates an alarm 
+\item CONFIRMED: This flag indicates an alarm 
 that has been confirmed as good.  The alarm level is set to {\it 3}.
 
 \end{itemize}
@@ -191,7 +191,7 @@ satisfied for the current operational mode.
 \item Two or more of the alarms in the coincidence
 are flagged as GOOD.  It is the responsibility of each participant
 experiment to flag the alarm sent to the SNEWS server(s)
-appropriately. The specific criteria for a GOOD/POSSIBLE/TEST/OVERRIDE alarms
+appropriately. The specific criteria for a GOOD/POSSIBLE/TEST/CONFIRMED alarms
 are locally defined by each experiment according to the guidelines 
 in section \ref{alarm}.
   
@@ -224,13 +224,13 @@ will be sent to the community by SNEWS until (and if) there is an
 upgrade to GOLD.
 
 A GOLD alert may also be generated if condition 1 is satisfied and
-at least one alarm in the coincidence is OVERRIDE, 
+at least one alarm in the coincidence is CONFIRMED, 
 regardless of whether the other conditions
 are satisfied. This case allows an override of past high rate history
 demotion, or other dubious conditions,  for a human-checked alert.
 
 An INDIVIDUAL alert is generated if a single experiment sends
-an OVERRIDE alarm.
+an CONFIRMED alarm.
 
 \section{Alert Procedure}
 
@@ -242,7 +242,7 @@ members:
 
 \begin{itemize}
 \item all detectors involved in the coincidence, 
-\item the types of alarms (GOOD, POSSIBLE, OVERRIDE) for each
+\item the types of alarms (GOOD, POSSIBLE, CONFIRMED) for each
 experiment involved in the coincidence,
 \item UTC time of each alarm in the coincidence, and
 
@@ -262,7 +262,7 @@ collaboration.
 subgroup page for SILVER, and a public page for GOLD.  
 
 For an INDIVIDUAL alert, the same information as above is sent
-for the single OVERRIDE level experiment.
+for the single CONFIRMED level experiment.
 
 An example of the alert message follows, for which extra information
 is available for one out of the three experiments in the coincidence;
@@ -366,7 +366,7 @@ the SNEWS shiftworker.\\
 A SILVER alert may be upgraded to GOLD if the requirements are
 confirmed in a second step. Any individual experiment is expected to
 resend its alarm datagram if the flag can be changed from POSSIBLE to
-OVERRIDE. All subgroup members must be then informed by
+CONFIRMED. All subgroup members must be then informed by
 e-mail. If the GOLD conditions are consequently fulfilled after the
 new alarm dispatch, the GOLD procedure will automatically operate.
 Note that the server process searches for coincidences
@@ -460,12 +460,14 @@ been received should be cited.
 \noindent
 \textbf{Version 3.0}
 \begin{itemize}
-\item Allow for INDIVIDUAL alert for a single OVERRIDE level alarm.   Change
+\item Allow for INDIVIDUAL alert for a single CONFIRMED level alarm.   Change
 flowchart accordingly.
 
-\item Send GOLD coincidence if a single OVERRIDE is included,
+\item Send GOLD coincidence if a single CONFIRMED is included,
 regardless of other condition (previously at least
-one GOOD and one OVERRIDE was required).
+one GOOD and one CONFIRMED was required).
+
+\item Change nomenclature:  OVERRIDE $\rightarrow$ CONFIRMED.
 
 \end{itemize}
 
