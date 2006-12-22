@@ -17,8 +17,9 @@ The participating experiments for this mode are:
 \item Super-K,
 \item LVD,
 \item AMANDA/IceCube,
-\item SNO.
 \end{itemize}
+
+Note that SNO members remain active members of the SNEWS working group.
 
 \section{Privacy Agreement}\label{privacy}
 
@@ -221,7 +222,7 @@ in section \ref{alarm}.
  coincidence, the rate of GOOD alarms for several past time intervals
  $\{T_i\}=\{$10 minutes, 1 hour, 10 hours, 1 day, 3 days, 1 week, 1
  month$\}$ preceding the first alarm of the coincidence candidate, 
- must be consistent with the $\lambda_{\rm{max}}=$1/10 days
+ must be consistent with the $\lambda_{\rm{max}}=$1/7 days
  requirement.\footnote{These intervals represent real time, not live
  time, since full live time information will not be available to the
  coincidence server.}  We define the precise condition as follows: if
@@ -231,7 +232,7 @@ in section \ref{alarm}.
 
 $\mathcal{P}_i=\sum_{n=n_i}^{\infty}(\lambda_{\rm{max}} T_i)^{n}e^{-\lambda_{\rm{max}} T_i}/n!$,
 
-for each interval $T_i$, must each be greater than $\mathcal{P}_{thr}=0.4$\%.
+for each interval $T_i$, must each be greater than $\mathcal{P}_{thr}=0.5$\%.
 This corresponds to the condition that each $\{n_i\}$ must be be less
 than $\{1,2,2,3,4,5,11\}$ for the preceding intervals $\{T_i\}$ for an
 alarm to be GOLD.
@@ -348,7 +349,6 @@ and the Sky \& Telescope AstroAlert list.
 
 \begin{itemize}
 
-\item SNO: see Appendix for contact list
 \item Super-K: see Appendix for contact list
 \item LVD: see Appendix for contact list
 \item AMANDA/IceCube: see Appendix for contact list
@@ -376,7 +376,6 @@ the SNEWS shiftworker.\\
 
 \begin{itemize}
 
-\item SNO: see Appendix for contact list
 \item Super-K: see Appendix for contact list
 \item LVD: see Appendix for contact list
 \item AMANDA/IceCube: see Appendix for contact list
@@ -482,6 +481,13 @@ been received should be cited.
 \noindent
 \textbf{Version 3.1}
 \begin{itemize}
+
+\item SNO is now off; gold alert criteria adjusted for
+2/3 coincidence:  mean alarm rate is changed from 1/week to 1/10
+days; Poisson probability threshold for automatic rate suppression 
+is changed from 0.4\% to 0.5\%.  
+
+
 \item Describe new backup server, and criteria for failover.
 
 \item Add backup server check responsibilities to shift section.
